@@ -1,17 +1,24 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.gildedrose.categories.*;
+import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
     @Test
-    void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items);
+    void conjuredManaCakeTest() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 5, 10) };
+        GildedRose app = new GildedRose(
+            items,
+            new DefaultCategory(),
+            new ConjuredManaCake()
+        );
         app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+        Item item = app.getItems()[0];
+        assertEquals("Conjured Mana Cake", item.name);
+        assertEquals(4, item.sellIn);
+        assertEquals(8, item.quality);
     }
-
 }
